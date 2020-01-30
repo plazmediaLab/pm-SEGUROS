@@ -2,30 +2,7 @@
 /* PLAZreset-CSS */
 /* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
 :root{
-/* ----------- Monochromatic -------------- */
-    --White:                    #ffffff;
-}
-input{
-  padding: .72em .892em;
-}
-textarea{
-  padding: .815em .892em;
-}
-.bg-white{
-  background-color: var(--White);
-}
-/* ---------------------------- */
-/* Icons Rotating */
-/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
-.i-h-flip{
-  -webkit-transform: scaleX(-1);
-  -ms-transform: scaleX(-1);
-      transform: scaleX(-1);
-}
-.i-v-flip{
-  -webkit-transform: scaleY(-1);
-  -ms-transform: scaleY(-1);
-      transform: scaleY(-1);
+
 }
 
 /* ============================================================================= */
