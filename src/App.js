@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Header from './components/Header'; 
 import Formulario from './components/Formulario'; 
+import Resumen from './components/Resumen'; 
+import Resultado from './components/Resultado'; 
+import Spinner from './components/Spinner';
 
 const ContenedorFormulario = styled.div`
   padding: 2rem;
@@ -12,6 +15,17 @@ const ContenedorFormulario = styled.div`
 const App = () => {
 
   const [error, guardarError] = useState(false);
+  const [resumen, guardarResumen] = useState({
+    cotizacion: 0,
+    datos: {
+      marca: '',
+      year: '',
+      plan: ''
+    }
+  });
+  // Extraer datos
+  const { datos, cotizacion } = resumen;
+  const [ spinner, cargarSpinner ] = useState(false);
 
   // Mensaje error global
   const mensajeError = (mensaje) => {
@@ -26,7 +40,22 @@ const App = () => {
         <Formulario 
           guardarError={guardarError}
           mensajeError={mensajeError}
+          guardarResumen={guardarResumen}
+          cargarSpinner={cargarSpinner}
         />
+        
+        <Resumen 
+          datos={datos}
+        />
+        { !spinner 
+        ?
+          <Resultado 
+            cotizacion={cotizacion}
+          /> : null
+        }
+
+        {spinner ? <Spinner /> : null}
+
       </ContenedorFormulario>
     </div>
   );

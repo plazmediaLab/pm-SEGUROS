@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { obtenerDiferencia, calcularMarca, obtenerPlan } from '../helpers.js';
 
 
 /*=================================================================================
@@ -27,7 +28,7 @@ const InputRadio = styled.input`
 /* ============================================================================= */
 
 
-const Formulario = ({ mensajeError, guardarError }) => {
+const Formulario = ({ mensajeError, guardarError, guardarResumen, cargarSpinner }) => {
 
   const [datos, guardarDatos] = useState({
     marca: '',
@@ -58,20 +59,39 @@ const Formulario = ({ mensajeError, guardarError }) => {
 
     guardarError(false);
 
+    // Base de precio
+    let resultado = 2000;
+
     // Obtener la diferencia de años
+    const diferencia = obtenerDiferencia(year);
 
     // Por cada año hay que restar el 3%
+    resultado -= (( diferencia * 3 ) * resultado ) / 100;
 
     // Americano 15%
     // Europeo 30%
     // Asiatico 5%
+    resultado = calcularMarca(marca) * resultado;
 
     // Básico aumenta 20%
     // completo 50%
+    const incrementoPlan = obtenerPlan(plan);
+    resultado = parseFloat( incrementoPlan * resultado ).toFixed(2);
 
+    // Cargar el Spinner
+    cargarSpinner(true)
     
     // Total
+    setTimeout(() => {
+      // Ocultar el Spinner
+      cargarSpinner(false)
 
+      // Pasa la información al componente principal 
+      guardarResumen({
+        cotizacion: resultado,
+        datos
+      })
+    }, 2000);
   };
 
 
@@ -88,9 +108,9 @@ const Formulario = ({ mensajeError, guardarError }) => {
           onChange={obtenerInformacion} 
         >
           <option value="">--- Seleccione ---</option>
-          <option value="americano">--- Americano ---</option>
-          <option value="europeo">--- Europeo ---</option>
-          <option value="asiatico">--- Asiatico ---</option>
+          <option value="americano">Americano</option>
+          <option value="europeo">Europeo</option>
+          <option value="asiatico">Asiatico</option>
         </select>
       </ItemForm>
       <ItemForm>

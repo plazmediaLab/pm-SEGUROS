@@ -15,3 +15,25 @@ body {
     background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);  /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to right, #4b134f, #c94b4b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+/* ---------------------------- */
+/* React Transition Group */
+/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+.my-node-enter {
+  transition: 1s;
+}
+.my-node-enter-active {
+  transform: translateY(0%);
+}
+.my-node-exit {
+  transform: translateY(100%);
+  transition: .4s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transform: translateY(100%);
+}
