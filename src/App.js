@@ -47,7 +47,7 @@ const App = () => {
         <Resumen 
           datos={datos}
         />
-        { !spinner 
+        { !spinner
         ?
           <Resultado 
             cotizacion={cotizacion}

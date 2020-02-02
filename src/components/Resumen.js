@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { primeraMayuscula } from '../helpers.js';
 
 
@@ -21,5 +22,11 @@ const Resumen = ({ datos }) => {
     </Fragment>
   );
 };
+
+
+Resumen.propTypes = {
+  datos: PropTypes.object.isRequired,
+}
+
 
 export default Resumen
